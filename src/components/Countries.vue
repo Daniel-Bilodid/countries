@@ -15,6 +15,7 @@
           <option value="oceania">Oceania</option>
         </select>
       </div>
+      <InfoCard :info="info" />
     </div>
   </div>
 
@@ -26,13 +27,25 @@
   </ul> -->
 
   <div class="countries__card-wrapper">
-    <div
+    <router-link
+      to="/InfoCard"
       class="countries__card"
       v-for="country in countries"
       :key="country.alpha3Code"
       @click="
         () => {
-          console.log(country.name);
+          info.name = country.name;
+          info.native = country.nativeName;
+          info.population = country.population;
+          info.region = country.region;
+          info.sub__region = country.subregion;
+          info.capital = country.capital;
+          info.domain = country.topLevelDomain;
+          info.currencies = country.currencies;
+          info.languages = country.languages;
+          info.borders = country.borders;
+
+          console.log(info);
         }
       "
     >
@@ -50,16 +63,32 @@
       <div class="countries__card-capital">
         Capital: <span>{{ country.capital }}</span>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
+import InfoCard from "./InfoCard.vue";
 export default {
   name: "Countries",
+  components: {
+    InfoCard,
+  },
   data() {
     return {
       countries: [],
+      info: {
+        name: null,
+        native: null,
+        population: null,
+        region: null,
+        sub__region: null,
+        capital: null,
+        domain: null,
+        currencies: null,
+        languages: null,
+        borders: [],
+      },
     };
   },
   mounted() {

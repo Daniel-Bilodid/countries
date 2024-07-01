@@ -1,11 +1,10 @@
 <script>
 import Header from "./components/Header.vue";
-import Countries from "./components/Countries.vue";
+
 export default {
   name: "App",
   components: {
     Header,
-    Countries,
   },
 };
 </script>
@@ -13,6 +12,6 @@ export default {
 <template>
   <div>
     <Header />
-    <Countries />
+    <router-view></router-view>
   </div>
 </template>
