@@ -15,7 +15,6 @@
           <option value="oceania">Oceania</option>
         </select>
       </div>
-      <InfoCard :info="info" />
     </div>
   </div>
 
@@ -27,27 +26,11 @@
   </ul> -->
 
   <div class="countries__card-wrapper">
-    <router-link
-      to="/InfoCard"
+    <div
       class="countries__card"
       v-for="country in countries"
       :key="country.alpha3Code"
-      @click="
-        () => {
-          info.name = country.name;
-          info.native = country.nativeName;
-          info.population = country.population;
-          info.region = country.region;
-          info.sub__region = country.subregion;
-          info.capital = country.capital;
-          info.domain = country.topLevelDomain;
-          info.currencies = country.currencies;
-          info.languages = country.languages;
-          info.borders = country.borders;
-
-          console.log(info);
-        }
-      "
+      @click="changeCountry(country)"
     >
       <div class="countries__card-img">
         <img :src="country.flag" alt="Country flag" />
@@ -63,8 +46,10 @@
       <div class="countries__card-capital">
         Capital: <span>{{ country.capital }}</span>
       </div>
-    </router-link>
+    </div>
   </div>
+
+  <InfoCard :info="info" />
 </template>
 
 <script>
@@ -109,6 +94,18 @@ export default {
           error
         );
       }
+    },
+    changeCountry(country) {
+      this.info.name = country.name;
+      this.info.native = country.nativeName;
+      this.info.population = country.population;
+      this.info.region = country.region;
+      this.info.sub__region = country.subregion;
+      this.info.capital = country.capital;
+      this.info.domain = country.topLevelDomain;
+      this.info.currencies = country.currencies;
+      this.info.languages = country.languages;
+      this.info.borders = country.borders;
     },
   },
 };

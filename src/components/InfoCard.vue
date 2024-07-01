@@ -1,7 +1,4 @@
-<template>
-  hellooo
-  {{ info.name }}
-</template>
+<template>name: {{ info.name }}</template>
 
 <script>
 export default {
@@ -10,7 +7,6 @@ export default {
     info: {
       type: Object,
       required: true,
-      default: () => ({}),
     },
   },
 };
