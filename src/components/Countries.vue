@@ -1,5 +1,5 @@
 <template>
-  <div class="countires">
+  <div class="countries">
     <div class="countries__wrapper">
       <div class="countries__input">
         <input type="text" placeholder="Search for a country…" value="" />
@@ -16,44 +16,40 @@
         </select>
       </div>
     </div>
-  </div>
 
-  <!-- <ul>
-    <li v-for="country in countries" :key="country.alpha3Code">
-      {{ country.name }} - {{ country.region }} - {{ country.population }} -
-      {{ country.capital }}
-    </li>
-  </ul> -->
-
-  <div class="countries__card-wrapper">
-    <div
-      class="countries__card"
-      v-for="country in countries"
-      :key="country.alpha3Code"
-      @click="changeCountry(country)"
-    >
-      <div class="countries__card-img">
-        <img :src="country.flag" alt="Country flag" />
-      </div>
-      <div class="countries__card-country">{{ country.name }}</div>
-
-      <div class="countries__card-population">
-        Population: <span>{{ country.population }}</span>
-      </div>
-      <div class="countries__card-region">
-        Region: <span> {{ country.region }}</span>
-      </div>
-      <div class="countries__card-capital">
-        Capital: <span>{{ country.capital }}</span>
-      </div>
+    <div class="countries__card-wrapper">
+      <router-link
+        v-for="country in countries"
+        :key="country.alpha3Code"
+        :to="{
+          name: 'CountryInfo',
+          params: { country: JSON.stringify(country) },
+        }"
+        class="countries__card"
+      >
+        <div class="countries__card-img">
+          <img :src="country.flag" alt="Country flag" />
+        </div>
+        <div class="countries__card-country">{{ country.name }}</div>
+        <div class="countries__card-population">
+          Population: <span>{{ country.population }}</span>
+        </div>
+        <div class="countries__card-region">
+          Region: <span>{{ country.region }}</span>
+        </div>
+        <div class="countries__card-capital">
+          Capital: <span>{{ country.capital }}</span>
+        </div>
+      </router-link>
     </div>
-  </div>
 
-  <InfoCard :info="info" />
+    <InfoCard :country="selectedCountry" v-if="selectedCountry" />
+  </div>
 </template>
 
 <script>
 import InfoCard from "./InfoCard.vue";
+
 export default {
   name: "Countries",
   components: {
@@ -62,18 +58,7 @@ export default {
   data() {
     return {
       countries: [],
-      info: {
-        name: null,
-        native: null,
-        population: null,
-        region: null,
-        sub__region: null,
-        capital: null,
-        domain: null,
-        currencies: null,
-        languages: null,
-        borders: [],
-      },
+      selectedCountry: null,
     };
   },
   mounted() {
@@ -95,18 +80,6 @@ export default {
         );
       }
     },
-    changeCountry(country) {
-      this.info.name = country.name;
-      this.info.native = country.nativeName;
-      this.info.population = country.population;
-      this.info.region = country.region;
-      this.info.sub__region = country.subregion;
-      this.info.capital = country.capital;
-      this.info.domain = country.topLevelDomain;
-      this.info.currencies = country.currencies;
-      this.info.languages = country.languages;
-      this.info.borders = country.borders;
-    },
   },
 };
 </script>
@@ -117,7 +90,7 @@ export default {
     width: 264px;
     height: 336px;
     border-radius: 5px;
-
+    text-decoration: none;
     box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
     background: rgb(255, 255, 255);
     &-country {
