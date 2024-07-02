@@ -84,6 +84,18 @@ export default {
   &__wrapper {
     display: flex;
   }
+
+  &__back button {
+    width: 136px;
+height: 40px;
+border-radius: 6px;
+margin-left: 80px;
+
+box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.29);
+background: rgb(255, 255, 255);
+border: none
+
+  }
   &__country {
     &-info {
       margin-top: 160px;

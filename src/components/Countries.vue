@@ -2,17 +2,40 @@
   <div class="countries">
     <div class="countries__wrapper">
       <div class="countries__input">
-        <input
-          type="text"
-          placeholder="Search for a country…"
-          @input="inputChange"
-          v-model="searchQuery"
-        />
+        <label class="input-with-icon">
+          <svg
+            width="17.500000"
+            height="17.500000"
+            viewBox="0 0 17.5 17.5"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <desc>Created with Pixso.</desc>
+            <defs />
+            <path
+              id="Shape"
+              d="M12.5 11L11.7 11L11.4 10.7C12.4 9.6 13 8.1 13 6.5C13 2.9 10.1 0 6.5 0C2.89999 0 0 2.9 0 6.5C0 10.1 2.89999 13 6.5 13C8.10001 13 9.6 12.4 10.7 11.4L11 11.7L11 12.5L16 17.5L17.5 16L12.5 11ZM2 6.5C2 9 4 11 6.5 11C9 11 11 9 11 6.5C11 4 9 2 6.5 2C4 2 2 4 2 6.5Z"
+              clip-rule="evenodd"
+              fill="#848484"
+              fill-opacity="1.000000"
+              fill-rule="evenodd"
+            />
+          </svg>
+
+          <input
+            type="text"
+            placeholder="Search for a country…"
+            @input="inputChange"
+            v-model="searchQuery"
+          />
+        </label>
       </div>
 
       <div class="countries__select">
         <select name="countries" @input="countryFilter($event)">
-          <option value="">Filter by Region</option>
+          <option value="" hidden>Filter by Region</option>
+          <option value="">All</option>
           <option value="Africa">Africa</option>
           <option value="Americas">America</option>
           <option value="Asia">Asia</option>
@@ -193,7 +216,7 @@ export default {
     justify-content: space-between;
   }
   &__input input {
-    margin-left: 80px;
+    margin-left: 141px;
     width: 480px;
     height: 56px;
     border-radius: 5px;
@@ -211,7 +234,47 @@ export default {
     box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.05);
     background: rgb(255, 255, 255);
     border: none;
-    margin-right: 80px;
+    margin-right: 141px;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 8px 30px 8px 10px;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12L4 6h12z"/></svg>');
+    background-size: 10px;
+    background-position: right 10px center;
+    background-repeat: no-repeat;
   }
+}
+
+.input-with-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.input-with-icon svg {
+  position: absolute;
+  left: 174px; /* Расположение иконки */
+  width: 20px;
+  height: 20px;
+  fill: gray; /* Цвет иконки */
+}
+
+.input-with-icon input {
+  padding-left: 74.5px; /* Учитывает ширину иконки */
+}
+
+.countries__select select:focus {
+  outline: none;
+  border: none;
+}
+
+.countries__select select option {
+  padding: 10px;
+  font-size: 14px; /* размер шрифта для опций */
+  background-color: #fff;
+  color: #333;
 }
 </style>

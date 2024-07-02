@@ -29,7 +29,7 @@
             stroke-width="1.250000"
           />
         </svg>
-        <span>Dark Mode</span>
+        <span @click="changeMode">Dark Mode</span>
       </div>
     </div>
   </div>
@@ -38,6 +38,17 @@
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      primaryColor: "rgb(242, 242, 242)",
+    };
+  },
+  methods: {
+    changeMode() {
+      this.primaryColor = "rgb(255, 0, 0)";
+      console.log("hello");
+    },
+  },
 };
 </script>
 
