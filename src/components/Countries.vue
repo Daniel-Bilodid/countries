@@ -2,24 +2,29 @@
   <div class="countries">
     <div class="countries__wrapper">
       <div class="countries__input">
-        <input type="text" placeholder="Search for a country…" value="" />
+        <input
+          type="text"
+          placeholder="Search for a country…"
+          @input="inputChange"
+          v-model="searchQuery"
+        />
       </div>
 
       <div class="countries__select">
-        <select name="countries">
+        <select name="countries" @input="countryFilter($event)">
           <option value="">Filter by Region</option>
-          <option value="africa">Africa</option>
-          <option value="america">America</option>
-          <option value="asia">Asia</option>
-          <option value="europe">Europe</option>
-          <option value="oceania">Oceania</option>
+          <option value="Africa">Africa</option>
+          <option value="Americas">America</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
         </select>
       </div>
     </div>
 
     <div class="countries__card-wrapper">
       <router-link
-        v-for="country in countries"
+        v-for="country in filteredCountries ? filteredCountries : countries"
         :key="country.alpha3Code"
         :to="{
           name: 'CountryInfo',
@@ -57,8 +62,10 @@ export default {
   },
   data() {
     return {
+      searchQuery: "",
       countries: [],
       selectedCountry: null,
+      filteredCountries: null,
     };
   },
   mounted() {
@@ -78,6 +85,27 @@ export default {
           "There has been a problem with your fetch operation:",
           error
         );
+      }
+    },
+
+    countryFilter(event) {
+      const selectedValue = event.target.value;
+      if (selectedValue !== "") {
+        this.filteredCountries = this.countries.filter(
+          (item) => item.region === selectedValue
+        );
+      } else {
+        this.filteredCountries = this.countries;
+      }
+    },
+    inputChange() {
+      const inputValue = this.searchQuery.trim().toLowerCase();
+      if (inputValue) {
+        this.filteredCountries = this.countries.filter((country) =>
+          country.name.toLowerCase().startsWith(inputValue)
+        );
+      } else {
+        this.filteredCountries = this.countries;
       }
     },
   },
