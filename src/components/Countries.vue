@@ -103,6 +103,8 @@ export default {
         }
         const data = await response.json();
         this.countries = data;
+
+        console.log(this.countries);
       } catch (error) {
         console.error(
           "There has been a problem with your fetch operation:",
