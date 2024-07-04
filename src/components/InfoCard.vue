@@ -76,6 +76,7 @@
         class="info__country-item"
         v-for="border in localCountry.borders"
         :key="border"
+        @click="findBorders()"
       >
         {{ border }}
       </li>
@@ -91,6 +92,10 @@ export default {
       type: [Object, String],
       required: true,
     },
+
+    countries: {
+      type: [Object, String],
+    },
   },
   data() {
     return {
@@ -99,6 +104,7 @@ export default {
   },
   created() {
     this.parseCountryProp();
+    this.findBorders();
   },
   watch: {
     country: {
@@ -120,6 +126,8 @@ export default {
         console.error("Parsing Error:", error);
       }
     },
+
+    findBorders() {},
   },
 };
 </script>
@@ -155,6 +163,13 @@ export default {
   &__country {
     &-list {
       display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    &-borders {
+      display: flex;
+      justify-content: center;
     }
     &-item {
       list-style-type: none;
@@ -164,7 +179,6 @@ export default {
       margin-left: 140px;
       width: 300px;
       p {
-        color: rgb(17, 21, 23);
         font-family: Nunito Sans;
         font-size: 16px;
         font-weight: 600;
@@ -182,7 +196,6 @@ export default {
     margin-left: 120px;
 
     p {
-      color: rgb(17, 21, 23);
       font-family: Nunito Sans;
       font-size: 16px;
       font-weight: 600;
@@ -195,8 +208,6 @@ export default {
       font-weight: 300;
     }
     &-name {
-      color: rgb(17, 21, 23);
-
       font-family: Nunito Sans;
       font-size: 32px;
       font-weight: 800;
