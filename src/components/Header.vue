@@ -1,9 +1,11 @@
 <template>
-  <div class="header">
+  <div :class="['header', { 'dark-mode': mode }]">
     <div class="header__wrapper">
-      <div class="header__title">Where in the world?</div>
+      <div :class="['header__title', { 'dark-mode': mode }]">
+        Where in the world?
+      </div>
 
-      <div class="header__theme">
+      <div class="header__theme" @click="changeMode">
         <svg
           width="16.843567"
           height="15.539566"
@@ -29,7 +31,7 @@
             stroke-width="1.250000"
           />
         </svg>
-        <span @click="changeMode">Dark Mode</span>
+        <span>{{ mode ? "Light Mode" : "Dark Mode" }}</span>
       </div>
     </div>
   </div>
@@ -40,31 +42,36 @@ export default {
   name: "Header",
   data() {
     return {
-      primaryColor: "rgb(242, 242, 242)",
+      mode: true,
     };
   },
   methods: {
     changeMode() {
-      this.primaryColor = "rgb(255, 0, 0)";
-      console.log("hello");
+      this.mode = !this.mode;
+      document.body.classList.toggle("dark-mode", this.mode);
     },
+  },
+  mounted() {
+    document.body.classList.toggle("dark-mode", this.mode);
   },
 };
 </script>
-
 <style lang="scss">
+.header.dark-mode {
+  background: rgb(43, 56, 68);
+  color: white;
+}
 .header {
   width: 100%;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
   background: rgb(255, 255, 255);
   height: 80px;
+
   &__wrapper {
     display: flex;
     justify-content: space-between;
   }
   &__title {
-    color: rgb(17, 21, 23);
-
     font-size: 24px;
     font-weight: 800;
     line-height: 33px;
@@ -79,8 +86,6 @@ export default {
     margin-top: 29px;
     cursor: pointer;
     span {
-      color: rgb(17, 21, 23);
-
       font-size: 16px;
       font-weight: 600;
       line-height: 22px;

@@ -1,7 +1,14 @@
 @import "./variables";
 
 body {
-  background-color: $primary-color;
+  background: $light-background;
+  color: $light-color;
   font-family: $nunito;
   margin: 0;
+  transition: all 0.3s;
+
+  &.dark-mode {
+    background: $dark-background;
+    color: $dark-color;
+  }
 }

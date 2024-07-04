@@ -92,7 +92,7 @@ border-radius: 6px;
 margin-left: 80px;
 
 box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.29);
-background: rgb(255, 255, 255);
+
 border: none
 
   }
@@ -102,7 +102,7 @@ border: none
       margin-left: 140px;
       width: 300px;
       p {
-      color: rgb(17, 21, 23);
+
 font-family: Nunito Sans;
 font-size: 16px;
 font-weight: 600;
@@ -120,7 +120,7 @@ text-align: left;
     margin-left: 120px;
 
     p {
-      color: rgb(17, 21, 23);
+      
 font-family: Nunito Sans;
 font-size: 16px;
 font-weight: 600;
@@ -134,7 +134,7 @@ text-align: left;
     }
     &-name {
   
-      color: rgb(17, 21, 23);
+ 
       font-family: Nunito Sans;
       font-size: 32px;
       font-weight: 800;
