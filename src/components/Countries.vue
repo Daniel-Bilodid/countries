@@ -330,7 +330,11 @@
       </router-link>
     </div>
 
-    <InfoCard :country="selectedCountry" v-if="selectedCountry" />
+    <InfoCard
+      :country="selectedCountry"
+      v-if="selectedCountry"
+      :countries="countries"
+    />
   </div>
 </template>
 
@@ -366,7 +370,6 @@ export default {
         const data = await response.json();
         this.countries = data;
         this.onLoading = false;
-        console.log(this.countries);
       } catch (error) {
         console.error(
           "There has been a problem with your fetch operation:",
@@ -544,5 +547,38 @@ export default {
   font-size: 14px; /* размер шрифта для опций */
   background-color: #fff;
   color: #333;
+}
+
+@media (max-width: 1070px) {
+  .countries {
+    &__wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+    &__input input {
+      margin: 0;
+    }
+
+    &__select select {
+      margin-top: 40px;
+      margin-right: 352px;
+    }
+  }
+
+  .input-with-icon svg {
+    left: 32px;
+  }
+}
+
+@media (max-width: 580px) {
+  .countries {
+    &__input input {
+      width: 250px;
+    }
+
+    &__select select {
+      margin-right: 122px;
+    }
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <div class="info__back">
+    <router-link class="info__back" :to="{ name: 'Countries' }">
       <button>
         <svg
           width="18.031250"
@@ -22,7 +22,7 @@
         </svg>
         <span>Back</span>
       </button>
-    </div>
+    </router-link>
     <div class="info__wrapper">
       <img :src="localCountry.flag" alt="Country flag" />
 
@@ -43,6 +43,18 @@
         <p>
           Capital: <span>{{ localCountry.capital }}</span>
         </p>
+        <div class="info__country-borders descktop">
+          Borders:
+          <ul class="info__country-list">
+            <li
+              class="info__country-item"
+              v-for="border in localCountry.borders"
+              :key="border"
+            >
+              {{ border }}
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="info__country-info">
@@ -66,21 +78,20 @@
             localCountry.languages[0].name ? localCountry.languages[0].name : ""
           }}</span>
         </p>
+        <div class="info__country-borders mobile">
+          Borders:
+          <ul class="info__country-list">
+            <li
+              class="info__country-item"
+              v-for="border in localCountry.borders"
+              :key="border"
+            >
+              {{ border }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="info__country-borders">
-    Borders:
-    <ul class="info__country-list">
-      <li
-        class="info__country-item"
-        v-for="border in localCountry.borders"
-        :key="border"
-        @click="findBorders()"
-      >
-        {{ border }}
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -92,10 +103,6 @@ export default {
       type: [Object, String],
       required: true,
     },
-
-    countries: {
-      type: [Object, String],
-    },
   },
   data() {
     return {
@@ -104,7 +111,6 @@ export default {
   },
   created() {
     this.parseCountryProp();
-    this.findBorders();
   },
   watch: {
     country: {
@@ -126,8 +132,6 @@ export default {
         console.error("Parsing Error:", error);
       }
     },
-
-    findBorders() {},
   },
 };
 </script>
@@ -154,11 +158,16 @@ export default {
     background: rgb(255, 255, 255);
     border: none;
     margin-top: 50px;
+    cursor: pointer;
   }
 
   &__back svg {
     margin-left: 32.57px;
     margin-right: 10px;
+  }
+
+  &__back span {
+    margin-right: 32px;
   }
   &__country {
     &-list {
@@ -170,9 +179,12 @@ export default {
     &-borders {
       display: flex;
       justify-content: center;
+      margin-top: 50px;
     }
     &-item {
       list-style-type: none;
+
+      margin-left: 10px;
     }
     &-info {
       margin-top: 160px;
@@ -226,6 +238,64 @@ export default {
     background: rgb(128, 128, 128);
     margin-left: 80px;
     margin-top: 100px;
+    object-fit: cover;
+  }
+}
+.mobile {
+  display: none;
+}
+@media (max-width: 1450px) {
+  .info {
+    &__wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+    &__region {
+      width: 360px;
+      margin-left: 0;
+    }
+    &__country {
+      &-info {
+        width: 360px;
+        margin-left: 0;
+
+        margin-top: 0;
+      }
+    }
+    img {
+      width: 420px;
+      height: 329px;
+      margin-left: 0;
+    }
+  }
+  .descktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 450px) {
+  .info {
+    img {
+      width: 320px;
+      height: 229px;
+    }
+    &__back {
+      button {
+        margin-left: 30px;
+      }
+    }
+    &__region {
+      width: 310px;
+    }
+
+    &__country {
+      &-info {
+        width: 310px;
+      }
+    }
   }
 }
 </style>

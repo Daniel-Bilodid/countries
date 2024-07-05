@@ -80,3 +80,20 @@ body {
     }
   }
 }
+
+.info {
+  &__back button {
+    background-color: $light-background;
+    color: $dark-color;
+
+    body.dark-mode & {
+      background-color: $dark-card-color;
+      color: $light-color;
+    }
+  }
+  &__back svg {
+    body.dark-mode & {
+      fill: white;
+    }
+  }
+}

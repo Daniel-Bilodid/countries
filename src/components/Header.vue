@@ -95,4 +95,31 @@ export default {
     }
   }
 }
+
+@media (max-width: 580px) {
+  .header {
+    &__title {
+      width: 235px;
+      height: 20px;
+      font-family: Nunito Sans;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      margin-left: 10px;
+    }
+
+    &__theme {
+      margin-right: 16px;
+      span {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0px;
+        text-align: left;
+      }
+    }
+  }
+}
 </style>
