@@ -14,8 +14,9 @@
           <defs />
           <path
             id="Shape"
-            d="M5.89 0L7.07 1.17L3.18 5.06L18.03 5.06L18.03 6.71L3.18 6.71L7.07 10.6L5.89 11.78L0 5.89L5.89 0Z"
-            fill="#111517"
+            d="M5.89 0L7.07 1.17L3.18 5.06L18.03 5.06L18.03
+          6.71L3.18 6.71L7.07 10.6L5.89 11.78L0 5.89L5.89 0Z"
+            :style="{ fill: 'var(--svg-color)' }"
             fill-opacity="1.000000"
             fill-rule="evenodd"
           />
@@ -164,6 +165,7 @@ export default {
   &__back svg {
     margin-left: 32.57px;
     margin-right: 10px;
+    fill: var(--svg-color);
   }
 
   &__back span {

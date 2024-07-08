@@ -1,5 +1,10 @@
 @import "./variables";
 
+:root {
+  --svg-color-light: #111517;
+  --svg-color-dark: #ffffff;
+  --svg-color-inpuit: rgb(132, 132, 132);
+}
 body {
   background: $light-background;
 
@@ -8,7 +13,15 @@ body {
   font-family: $nunito;
   margin: 0;
   transition: all 0.3s;
+  --svg-input: var(--svg-color-inpuit);
+  &.dark-mode {
+    background: $dark-background;
+    color: $light-color;
+    --svg-color: var(--svg-color-dark);
+  }
+}
 
+.countries__select select option {
   &.dark-mode {
     background: $dark-background;
     color: $light-color;
@@ -58,6 +71,11 @@ body {
       body.dark-mode & {
         color: $light-color;
       }
+    }
+  }
+  &__select select {
+    body.dark-mode & {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 20"><path d="M10 12L4 6h12z"/></svg>');
     }
   }
 

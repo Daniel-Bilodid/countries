@@ -10,8 +10,8 @@ export default {
 </script>
 
 <template>
-  <div>
+  <main>
     <Header />
     <router-view></router-view>
-  </div>
+  </main>
 </template>

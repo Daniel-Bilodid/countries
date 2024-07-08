@@ -4,8 +4,8 @@
       <div class="countries__input">
         <label class="input-with-icon">
           <svg
-            width="17.500000"
-            height="17.500000"
+            width="17.5"
+            height="17.5"
             viewBox="0 0 17.5 17.5"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -15,10 +15,16 @@
             <defs />
             <path
               id="Shape"
-              d="M12.5 11L11.7 11L11.4 10.7C12.4 9.6 13 8.1 13 6.5C13 2.9 10.1 0 6.5 0C2.89999 0 0 2.9 0 6.5C0 10.1 2.89999 13 6.5 13C8.10001 13 9.6 12.4 10.7 11.4L11 11.7L11 12.5L16 17.5L17.5 16L12.5 11ZM2 6.5C2 9 4 11 6.5 11C9 11 11 9 11 6.5C11 4 9 2 6.5 2C4 2 2 4 2 6.5Z"
+              d="M12.5 11L11.7 11L11.4 10.7C12.4 9.6 13 8.1 13
+            6.5C13 2.9 10.1 0 6.5 0C2.89999 0 0 2.9 0 6.5C0 10.1 2.89999 13 6.5
+            13C8.10001 13 9.6 12.4 10.7 11.4L11 11.7L11 12.5L16 17.5L17.5
+            16L12.5 11ZM2 6.5C2 9 4 11 6.5 11C9 11 11 9 11 6.5C11 4 9 2 6.5 2C4
+            2 2 4 2 6.5Z"
+              :style="{ fill: 'var(--svg-input)' }"
+              variable
+              here
               clip-rule="evenodd"
-              fill="#848484"
-              fill-opacity="1.000000"
+              fill-opacity="1"
               fill-rule="evenodd"
             />
           </svg>
@@ -512,7 +518,7 @@ export default {
     -moz-appearance: none;
     padding: 8px 30px 8px 10px;
 
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12L4 6h12z"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--svg-color)" viewBox="0 0 20 20"><path d="M10 12L4 6h12z"/></svg>');
     background-size: 10px;
     background-position: right 10px center;
     background-repeat: no-repeat;
@@ -527,14 +533,15 @@ export default {
 
 .input-with-icon svg {
   position: absolute;
-  left: 174px; /* Расположение иконки */
+  left: 174px;
   width: 20px;
   height: 20px;
-  fill: gray; /* Цвет иконки */
+
+  fill: var(--svg-input);
 }
 
 .input-with-icon input {
-  padding-left: 74.5px; /* Учитывает ширину иконки */
+  padding-left: 74.5px;
 }
 
 .countries__select select:focus {
@@ -544,9 +551,7 @@ export default {
 
 .countries__select select option {
   padding: 10px;
-  font-size: 14px; /* размер шрифта для опций */
-  background-color: #fff;
-  color: #333;
+  font-size: 14px;
 }
 
 @media (max-width: 1070px) {
