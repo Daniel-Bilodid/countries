@@ -426,6 +426,16 @@ export default {
     box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
     background: rgb(255, 255, 255);
 
+    animation: load-in 1s ease forwards;
+    transition: none;
+
+    &:hover {
+      animation: hover-in 0.3s forwards;
+    }
+
+    &:not(:hover) {
+      animation: hover-out 0.3s forwards;
+    }
     &-country {
       font-size: 18px;
       font-weight: 800;
@@ -584,6 +594,39 @@ export default {
     &__select select {
       margin-right: 122px;
     }
+  }
+}
+
+@keyframes load-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hover-in {
+  0% {
+    transform: scale(1);
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes hover-out {
+  0% {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
   }
 }
 </style>
